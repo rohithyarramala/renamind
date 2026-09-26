@@ -44,6 +44,10 @@ Nothing gets a free pass because "the AI did it."
 - **Confidence, not blind trust.** Agent and model outputs are scored, not
   taken at face value — surfaced consistently across the Agent Kernel and
   LLM Gateway.
+- **Human-in-the-loop by design.** A bot can pause and require human
+  approval before a risky or uncertain action instead of just logging what
+  it did afterward. Approval requests fail closed: no response in time
+  means rejected, never silently approved.
 
 ## Subsystems
 
@@ -53,7 +57,7 @@ roadmap was) before it's built.
 
 1. **Agent Kernel** — orchestrates multiple internal bots, each scoped to
    a specific task; owns bot lifecycle, task routing, and inter-bot
-   handoff.
+   handoff. Specified: [docs/specs/2026-09-26-agent-kernel-design.md](docs/specs/2026-09-26-agent-kernel-design.md).
 2. **Secrets Vault** — stores credentials and secrets with strict,
    auditable access control; designed to fail closed under compromise or
    jailbreak attempts, not just under normal use.
@@ -106,8 +110,6 @@ or real data — never the reverse.
 These are intentionally unresolved here — each gets its own
 brainstorming/spec cycle before work starts:
 
-- Which subsystem to spec first (Phase 1 candidates: Agent Kernel vs. LLM
-  Gateway as the very first piece)
 - Concrete memory backend (graph DB? vector store? hybrid?) for the Memory
   Store
 - Concrete RBAC model (RBAC vs. ABAC vs. hybrid) for Identity & Access
